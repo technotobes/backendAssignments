@@ -1,0 +1,26 @@
+<html>
+    <head></head>
+
+    <body>
+        <h1>View All Trips</h1>
+        <form method="GET" action='/add-trip'>
+            <button>Create New Trip</button>
+        </form>
+
+       <ul>
+       {{#allTrips}}
+       <li>
+        {{title}} - {{image}} - {{dod}} - {{dor}}
+            <a href="/trips/edit/{{tripId}}" style="text-decoration:none">
+                <button>Edit</button>
+            </a>
+            <a href="/trips/delete/{{tripId}}" style="text-decoration:none">
+                <button>Delete</button>
+            </a>
+       </li>
+       {{/allTrips}}
+        </ul>
+    
+    </body>
+
+</html>

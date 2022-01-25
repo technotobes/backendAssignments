@@ -1,0 +1,26 @@
+<html>
+    <head></head>
+
+    <body>
+        <h1>Delete Trip</h1>
+
+        <form method="GET" action='/trips'>
+            <button>View All Trips</button>
+        </form>
+
+        {{#deleteTrip}}
+            {{title}} - {{image}} - {{dod}} - {{dor}}
+
+            <h2>Delete this trip?</h2>
+            <form method="POST" action='/trips/delete/{{tripId}}'>
+                <button>Yes</button>
+            </form>
+            <form method="GET" action='/trips'>
+                <button>No</button>
+            </form>
+
+        {{/deleteTrip}}
+    
+    </body>
+
+</html>

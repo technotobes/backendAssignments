@@ -1,0 +1,23 @@
+<html>
+    <head></head>
+
+    <body>
+        <h1>Edit Trip</h1>
+
+        <form method="GET" action='/trips'>
+            <button>View All Trips</button>
+        </form>
+
+        {{#editTrip}}
+        <form method="POST" action='/trips/edit/{{tripId}}'>
+            <input type="text" value="{{title}}" placeholder="title" name="updatedTripTitle">
+            <input type="text" value="{{image}}" placeholder="img url" name="updatedTripImage">
+            <input type="date" value="{{dod}}" placeholder="dod" name="updatedTripDod">
+            <input type="date" value="{{dor}}" placeholder="dor" name="updatedTripDor">
+            <button>Update</button>
+        </form>
+        {{/editTrip}}
+    
+    </body>
+
+</html>
