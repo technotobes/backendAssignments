@@ -1,5 +1,7 @@
 <html>
-    <head></head>
+    <head>
+        <link style="stylesheet" href="/styles.css" />
+    </head>
 
     <body>
         <h1>View All Trips</h1>
@@ -18,6 +20,10 @@
                 <button>Delete</button>
             </a>
        </li>
+       {{/allTrips}}
+
+       {{^allTrips}}
+            There are no trips.
        {{/allTrips}}
         </ul>
     

@@ -1,0 +1,58 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Movies Genre</h1>
+
+        <a href="/movies/add-movie">Add Movie</a>
+
+        {{! <h3>Filter Movies By:<h3> }}
+
+        {{! <form method="post" action="/movies/genre/action" >
+            <input type="hidden" value=Action name="genre"/>
+            <button>Action</button>
+        </form>
+
+        <form method="post" action="/movies/genre/action" >
+            <input type="hidden" value=Musical name="genre"/>
+            <button>Musical</button>
+        </form> }}
+
+        <h3>Filter Movies By:<h3>
+
+        <a href="/movies">
+            <button>View All Movies</button>
+        </a>
+
+        <a href="/movies/genre/Musical">
+            <button>Musical</button>
+        </a>
+
+        <a href="/movies/genre/Action">
+            <button>Action</button>
+        </a>
+
+        <li>
+
+        <ul>
+        {{#movieGenre}}
+                <a href="/movies/{{movieId}}">
+                    <img src="{{posterURL}}" alt={{title}} width='200px'/> {{title}}
+                </a>
+
+                <form method="POST" action="/movies/delete">
+                    <input type="hidden" value={{movieId}} name="movieId"/>
+                    <button>Delete</button>
+                </form>
+            </li>
+            
+
+        {{/movieGenre}}
+
+        {{^movieGenre}}
+            There are no movies to display
+        {{/movieGenre}}    
+
+        <ul>
+
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/css/styles.css" />
+    </head>
+    <body>
+        <h1>Movies</h1>
+
+        <h2>Add Movie</h2>
+
+        <form method="POST" action="/movies/create-movie">
+            <input type = "text" placeholder="Title" name = "movieTitle" />
+            <input type = "text" placeholder="Description" name = "movieDescription" />
+            <input type = "text" placeholder="Genre" name = "movieGenre" />
+            <input type = "text" placeholder="Poster URL" name = "moviePosterURL" />
+            <button>Submit</button>
+        </form>
+
+
+        <h3>Filter Movies By:<h3>
+
+        <div class='btnContainer' id="btnContainer">
+            <ul id="buttonsUL">
+            </ul>
+        </div>
+
+        <a href="/movies">
+            <button>View All Movies</button>
+        </a>
+
+        <a href="/movies/genre/Musical">
+            <button>Musical</button>
+        </a>
+
+        <a href="/movies/genre/Action">
+            <button>Action</button>
+        </a>
+        
+        <ul>
+        {{#allMovies}}
+                <a href="/movies/{{movieId}}">
+                    <img src="{{posterURL}}" alt={{title}} width='200px'/> {{title}}
+                </a>
+
+                <form method="POST" action="/movies/delete">
+                    <input type="hidden" value={{movieId}} name="movieId"/>
+                    <button>Delete</button>
+                </form>
+            </li>
+            
+
+        {{/allMovies}}
+
+        {{^allMovies}}
+            There are no movies to display
+        {{/allMovies}}    
+
+        <ul>
+    <script src="/js/static.js"></script>
+    </body>
+</html>

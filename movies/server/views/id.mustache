@@ -1,0 +1,26 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Movie</h1>
+
+        <a href="/movies/add-movie">Add Movie</a>
+
+
+        <ul>
+        {{#movieId}}
+
+            <li>
+                <img src="{{posterURL}}" alt={{title}} width='200px'/>
+                {{title}} - {{description}} - {{genre}} 
+
+                <form method="POST" action="/movies/delete">
+                    <input type="hidden" value={{movieId}} name="movieId"/>
+                    <button>Delete</button>
+                </form>
+            </li>
+            
+        {{/movieId}}
+        <ul>
+
+    </body>
+</html>
