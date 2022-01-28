@@ -1,9 +1,24 @@
 const express = require('express')
 const router = express.Router()
 
+function authenticateMiddleware(req, res, next) {
+    if(req.session) {
+        if(req.session.username) {
+            // send the user to their original request
+            next()
+        } else {
+            res.redirect('/')
+        }
+    } else {
+        res.redirect('/')
+    }
+}
+
 // /movies
-router.get('/', (req, res) => {
-    res.render('movies', {allMovies:movies})
+router.get('/', authenticateMiddleware, (req, res) => {
+    const username = req.session.username
+    let userMovies = movies.filter(movie => movie.username.toLowerCase() == username.toLowerCase())
+    res.render('movies', {allMovies: userMovies})
 })
 
 
@@ -15,8 +30,10 @@ router.get("/:movieId", (req, res) => {
 
 router.get('/genre/:genre', (req, res) => {
     const genre = req.params.genre
-    console.log(genre)
-    let filteredMovies = movies.filter(movie => movie.genre.toLowerCase() == genre.toLowerCase())
+    const username = req.session.username
+    let userMovies = movies.filter(movie => movie.username.toLowerCase() == username.toLowerCase())
+    // console.log(genre)
+    let filteredMovies = userMovies.filter(movie => movie.genre.toLowerCase() == genre.toLowerCase())
     res.render('genre', {movieGenre: filteredMovies})
 })
 
@@ -24,13 +41,23 @@ router.get('/genre/:genre', (req, res) => {
 
 
 
-router.post('/create-movie', (req, res) => {
+router.post('/create-movie', authenticateMiddleware, (req, res) => {
     const title = req.body.movieTitle
     const description = req.body.movieDescription
     const genre = req.body.movieGenre
     const posterURL = req.body.moviePosterURL
 
-    const movie = {title:title, description:description, genre:genre, posterURL:posterURL, movieId: movies.length + 1}
+    const username = req.session.username
+    // console.log(username)
+
+    const movie = {
+        title:title, 
+        description:description, 
+        genre:genre, 
+        posterURL:posterURL, 
+        movieId: movies.length + 1,
+        username: username
+    }
     movies.push(movie)
     res.redirect('/movies')
 })

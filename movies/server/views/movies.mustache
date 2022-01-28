@@ -3,6 +3,9 @@
         <link rel="stylesheet" href="/css/styles.css" />
     </head>
     <body>
+        <form method="GET" action="/logout">
+            <button>Log Out</button>
+        </form>
         <h1>Movies</h1>
 
         <h2>Add Movie</h2>
@@ -16,45 +19,56 @@
         </form>
 
 
-        <h3>Filter Movies By:<h3>
+        <a href="/movies">
+            <button>View All Movies</button>
+        </a>
+        <h3>Filter Genres:<h3>
+
+        {{! <select id="genresDropdown"></select> }}
 
         <div class='btnContainer' id="btnContainer">
             <ul id="buttonsUL">
             </ul>
         </div>
 
-        <a href="/movies">
-            <button>View All Movies</button>
-        </a>
-
-        <a href="/movies/genre/Musical">
-            <button>Musical</button>
+{{! 
+        <a href="/movies/genre/Action">
+            <button>Action</button>
         </a>
 
         <a href="/movies/genre/Action">
             <button>Action</button>
         </a>
+
+        <a href="/movies/genre/Musical">
+            <button>Musical</button>
+        </a> }}
+
+        <div id="moviesContainer">
+            <ul>
+            {{#allMovies}}
+                <li>
+                    <a href="/movies/{{movieId}}">
+                        {{title}}
+                        <img src="{{posterURL}}" alt={{title}} width='200px'/> 
+                    </a>
+
+                    <form method="POST" action="/movies/delete">
+                        <input type="hidden" value={{movieId}} name="movieId"/>
+                        <button>Delete</button>
+                    </form>
+                </li>
+                
+
+            {{/allMovies}}
+
+            {{^allMovies}}
+                There are no movies to display
+            {{/allMovies}}    
+
+            <ul>
         
-        <ul>
-        {{#allMovies}}
-                <a href="/movies/{{movieId}}">
-                    <img src="{{posterURL}}" alt={{title}} width='200px'/> {{title}}
-                </a>
-
-                <form method="POST" action="/movies/delete">
-                    <input type="hidden" value={{movieId}} name="movieId"/>
-                    <button>Delete</button>
-                </form>
-            </li>
-            
-
-        {{/allMovies}}
-
-        {{^allMovies}}
-            There are no movies to display
-        {{/allMovies}}    
-
-        <ul>
-    <script src="/js/static.js"></script>
+        </div>
+        <script src="/js/static.js"></script>
     </body>
 </html>
