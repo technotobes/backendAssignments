@@ -1,0 +1,43 @@
+
+<html>
+    <head>
+    </head>
+    
+    <body>
+        <h1>Index</h1>
+        <a href="/create-account">Create Account</a>
+        <a href="/login">Login</a>
+
+        <form method="GET" action="/view-post">
+            <button>View Your Posts</button>
+        </form>
+
+        <h2>Create a post<h2>
+            <form method="POST" action="/create-post">
+                <input type="text" name="titleText" />
+                <input type="text" name="bodyText" />
+                <button>Post</button>
+            </form>
+
+        <ul>
+        {{#allPosts}}
+
+            <li>
+                <h3>{{title}}<h3>
+                {{body}}
+                {{date_created}}
+                
+                <form method="POST" action="/delete">
+                    <input type="hidden" value={{post_id}} name="postId"/>
+                    <button>Delete</button>
+                </form>
+                <a href="/edit/{{post_id}}">Edit</a>
+
+            </li>
+
+        {{/allPosts}}
+        </ul>
+
+        
+    </body>
+</html>
