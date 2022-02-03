@@ -1,0 +1,29 @@
+<html>
+    <head>
+    </head>
+    
+    <body>
+        <h1>All Blog Posts</h1>
+        <a href="/blog/dashboard">Dashboard<a>
+
+
+        {{#allPosts}}
+
+            <li>
+                <h3>{{title}}<h3>
+                {{body}}
+                {{date_created}}
+                
+                <p>Posted by {{user.username}}</p>
+            
+                <a href=/blog/post/{{id}}>View Post</a>
+                
+
+            </li>
+
+        {{/allPosts}}
+        </ul>
+
+        
+    </body>
+</html>

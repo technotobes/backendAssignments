@@ -1,42 +1,32 @@
 
 <html>
     <head>
+        <link rel="stylesheet" href="/css/styles.css" />
     </head>
     
     <body>
-        <h1>Index</h1>
-        <a href="/create-account">Create Account</a>
-        <a href="/login">Login</a>
+        <div class="container">
+            <div class="col">
+                <h1>OH MY BLOG!</h1>
+                <p>Post all your Lumpy Space Blogs.<p>
+            </div>
 
-        <form method="GET" action="/view-post">
-            <button>View Your Posts</button>
-        </form>
-
-        <h2>Create a post<h2>
-            <form method="POST" action="/create-post">
-                <input type="text" name="titleText" />
-                <input type="text" name="bodyText" />
-                <button>Post</button>
-            </form>
-
-        <ul>
-        {{#allPosts}}
-
-            <li>
-                <h3>{{title}}<h3>
-                {{body}}
-                {{date_created}}
-                
-                <form method="POST" action="/delete">
-                    <input type="hidden" value={{post_id}} name="postId"/>
-                    <button>Delete</button>
+            <div class="col">
+                <form method="POST" action="/login" class="inputIndex">
+                    <input type="text" placeholder="Username" name="usernameText" />
+                    <input type="password" placeholder="Password" name="passwordText" />
+                    <button>Login</button>
                 </form>
-                <a href="/edit/{{post_id}}">Edit</a>
 
-            </li>
+                {{logoutMessage}}
 
-        {{/allPosts}}
-        </ul>
+            </div>
+                <p>
+                    Don't Have an Account?
+                    <a href="/create-account">Register Now</a>
+                </p>
+
+        </div>
 
         
     </body>

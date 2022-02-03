@@ -1,17 +1,28 @@
 <html>
-    <head>
+        <head>
+        <link rel="stylesheet" href="/css/styles.css" />
     </head>
     
     <body>
-        <h1>Create Account</h1>
+        <div class="container">
+            <div class="col">
+                <h1>Create Your Account</h1>
+                <p>Almost there..<p>
+            </div>
 
+            <div class="col">
+                <form method="POST" action="/create-account" class="inputIndex">
+                    <input type="text" placeholder="Username" name="usernameText" />
+                    <input type="password" placeholder="Password" name="passwordText" />
+                    <button>Register</button>
+                </form>
+                {{errorMessage}}
 
-        <form method="POST" action="/create-account">
-            <input type="text" name="usernameText" />
-            <input type="password" name="passwordText" />
-            <button>Register</button>
-        </form>
+            </div>
+                <p>
+                    Already have an account?
+                    <a href="/">Login</a>
+                </p>
 
-        
-    </body>
+        </div>
 </html>

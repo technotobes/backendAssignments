@@ -1,0 +1,39 @@
+<html>
+    <head>
+    </head>
+    
+    <body>
+        <h1>View Post</h1>
+        <a href="/blog/dashboard">Dashboard</a>
+
+
+
+            <li>
+                <h3>{{title}}<h3>
+                {{body}}
+                {{date_created}}
+                <p>Posted by {{user.username}}</p>
+
+                <form method="POST" action="/blog/create-comment">
+                    <input type="hidden" value={{id}} name="postId"/>
+                    <input type="text" name="commentText" />
+                    <button>Comment</button>
+                </form>
+                <h4>Comments<h4>
+                {{#comments}}
+                    <p>{{commenter.username}}<p>
+                    <p>{{body}}<p>
+                    <form method="POST" action="/blog/delete/comment/{{id}}">
+                        <input type="hidden" value={{post_id}} name="postId"/>
+                        <button>Delete</button>
+                    </form>
+                {{/comments}}
+
+
+            </li>
+
+        </ul>
+
+        
+    </body>
+</html>

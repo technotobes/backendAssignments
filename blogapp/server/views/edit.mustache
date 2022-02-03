@@ -5,15 +5,15 @@
     
     <body>
         <h1>Edit</h1>
-
+        {{#fullPost}}
         <h2>Edit Post<h2>
-            <form method="POST" action="/update">
+            <form method="POST" action="/blog/update/{{id}}">
                 <input type="text" value="{{title}}" name="titleText" />
                 <input type="text" value="{{body}}" name="bodyText" />
-                <input type="hidden" value={{post_id}} name="postId"/>
+                <input type="text" value="{{category}}" name="categoryText" />
                 <button>Update</button>
             </form>
-        
+        {{/fullPost}}
 
         
     </body>
